@@ -1,15 +1,26 @@
+- content_for :extra_body_classes, "welcome"
+
+notice = @notice
 - title @article.title
 
-.article.is-long-text
-  .a-card
-    h2.article__title = title
-    .article__description.js-markdown-view = @article.body
-    - if admin_login?
-      ul
-        li
-          = link_to '内容修正', edit_article_path(@article)
-        li
-          = link_to '削除',
-            article_path(@article),
-            data: { confirm: '本当によろしいですか？' },
-            method: :delete
+.welcome-page-header
+  .container
+    .welcome-page-header__inner
+      .welcome-page-header__title
+        | Blog
+      .welcome-page-header__nav
+        = link_to articles_path, class: "a-button is-md is-secondary is-block" do
+          | ブログ記事一覧
+
+.welcome-sections
+  .welcome-section
+    .container.is-md
+      article.article
+        header.article__header
+          h1.article__title
+            = @article.title
+            br
+            = raw @article.tag_list.map { |t| link_to t, tag_path(t) }.join(",")
+        .article__body
+          .js-markdown-view.js-target-blank.is-long-text
+            = @article.body

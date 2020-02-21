@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    render layout: 'article'
+    render layout: "welcome"
   end
 
   def new

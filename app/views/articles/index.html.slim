@@ -1,15 +1,42 @@
 - title 'ブログ記事一覧'
 
-- @articles.each do |article|
-  .article.is-long-text
-    .a-card
-      h2.article__title = link_to article.title, article
-      - if admin_login?
-        ul
-          li
-            = link_to '内容修正', edit_article_path(article)
-          li
-            = link_to '削除',
-              article_path(article),
-              data: { confirm: '本当によろしいですか？' },
-              method: :delete
+.welcome-page-header
+  .container
+    .welcome-page-header__title
+      - if params[:tag]
+        | タグ: #{params[:tag]} の記事一覧
+      - else
+        | Blog
+
+    //
+      .tag_cloud
+        - tag_cloud Article.tag_counts, %w{s m l} do |tag, css_class|
+          = link_to tag.name, tag_path(tag.name)
+
+.welcome-sections
+  .welcome-section
+    .container.is-md
+      .articles
+        .articles__items
+          - @articles.each do |article|
+            .articles__item
+              section.articles-article
+                header.articles-article__header
+                  h1.articles-article__title(itemprop="name")
+                    = link_to article.title, article, itempro: "url", class: "articles-article__title-link"
+                  - # rubocop:disable Rails/OutputSafety
+                  - # = raw article.tag_list.map { |t| link_to t, tag_path(t) }.join(',')
+                  - # rubocop:enable Rails/OutputSafety
+                - if admin_login?
+                  footer.articles-article__footer
+                    .card-footer-actions
+                      ul.card-footer-actions__items
+                        li.card-footer-actions__item
+                          = link_to edit_article_path(article), class: "card-footer-actions__action is-button-simple-md-primary is-block", id: "js-shortcut-edit" do
+                            i.fas.fa-pen#edit
+                            | 内容修正
+                        li.card-footer-actions__item.is-sub
+                          = link_to article_path(article), data: { confirm: "本当によろしいですか？" }, method: :delete, class: "card-footer-actions__delete" do
+                            #delete
+                            | 削除する
+    = paginate @articles, position: 'bottom'
