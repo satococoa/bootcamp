@@ -42,3 +42,11 @@ kimura_tag_may_j_:
   taggable: kimura (User)
   context: tags
   tag: may_j_
+tagging_1:
+  taggable: article_1 (Article)
+  context: tags
+  tag: Ruby
+tagging_2:
+  taggable: article_2 (Article)
+  context: tags
+  tag: FJORD
