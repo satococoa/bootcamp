@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    render layout: "welcome"
+    render layout: 'welcome'
   end
 
   def new
@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     if @article.save
       @article.resize_thumbnail!
-      redirect_to @article, notice: "記事を作成しました"
+      redirect_to @article, notice: '記事を作成しました'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
   def update
     if @article.update(article_params)
       @article.resize_thumbnail!
-      redirect_to @article, notice: "記事を更新しました"
+      redirect_to @article, notice: '記事を更新しました'
     else
       render :edit
     end
