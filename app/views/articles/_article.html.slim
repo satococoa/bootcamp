@@ -1,0 +1,35 @@
+.o-horizontal-articles__item
+  = link_to article, itempro: 'url', class: 'm-medias-media' do
+    .m-medias-media__row
+      .m-medias-media__image-container
+        - if article.thumbnail.attached?
+          = image_tag(article.thumbnail_url, class: 'm-medias-media__image')
+        - else
+          = image_tag('work-blank.svg', class: 'm-medias-media__image')
+    .m-medias-media__row
+      .m-media-attributes
+        .m-media-attributes__col
+          .m-media-attributes__row
+            h2.m-media-attributes__title
+              = article.title
+          .m-media-attributes__row
+            .m-media-attributes__list
+              .m-inline-list
+                .m-inline-list__items
+                  .m-inline-list__item
+                    date.m-media-attributes__date
+                      | 2020年12月24日
+                      // published_at
+                      = article.created_at
+                  .m-inline-list__item
+                    .m-media-attributes__author
+                      = image_tag('https://via.placeholder.com/100', class: 'a-circle-image')
+                      .m-media-attributes__author-name
+                        | machida
+  - if admin_login?
+    footer.articles-article__footer
+      .m-inline-icon-list
+        ul.m-inline-icon-list__items
+          li.m-inline-icon-list__item
+            = link_to edit_article_path(article), class: "a-button is-md is-warning is-icon", id: "js-shortcut-edit" do
+              i.fas.fa-pen#edit
