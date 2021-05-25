@@ -51,6 +51,7 @@ gem 'sorcery-jwt'
 gem 'stripe', '~> 4.5.0'
 gem 'stripe-i18n', git: 'https://github.com/komagata/stripe-i18n', branch: 'update-depencency'
 gem 'sucker_punch', '~> 2.0'
+gem "pankuzu"
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
