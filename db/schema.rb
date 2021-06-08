@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_28_112148) do
+ActiveRecord::Schema.define(version: 2021_06_07_171344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -260,7 +260,9 @@ ActiveRecord::Schema.define(version: 2021_05_28_112148) do
     t.datetime "published_at"
     t.integer "last_updated_user_id"
     t.bigint "practice_id"
+    t.string "slug", limit: 200
     t.index ["practice_id"], name: "index_pages_on_practice_id"
+    t.index ["slug"], name: "index_pages_on_slug", unique: true
     t.index ["updated_at"], name: "index_pages_on_updated_at"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
@@ -343,6 +345,8 @@ ActiveRecord::Schema.define(version: 2021_05_28_112148) do
     t.bigint "practice_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "must_read", default: false, null: false
+    t.text "description"
     t.index ["practice_id"], name: "index_reference_books_on_practice_id"
   end
 
