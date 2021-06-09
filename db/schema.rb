@@ -453,7 +453,6 @@ ActiveRecord::Schema.define(version: 2021_06_07_171344) do
     t.string "github_id"
     t.boolean "slack_participation", default: true, null: false
     t.boolean "github_collaborator", default: false, null: false
-    t.boolean "officekey_permission", default: false, null: false
     t.string "name", default: "", null: false
     t.string "name_kana", default: "", null: false
     t.integer "satisfaction"
