@@ -16,20 +16,20 @@ class ProductsTest < ApplicationSystemTestCase
   test 'advisor can not see listing unchecked products' do
     login_user 'advijirou', 'testtest'
     visit '/products'
-    assert_no_link '未チェック'
+    assert_no_link '未完了'
   end
 
   test 'mentor can see a button to open to open all unchecked products' do
     login_user 'komagata', 'testtest'
     visit '/products/unchecked'
-    assert_button '未チェックの提出物を一括で開く'
+    assert_button '未完了の提出物を一括で開く'
   end
 
   test 'click on open all unchecked submissions button' do
     login_user 'komagata', 'testtest'
     visit '/products/unchecked'
 
-    click_button '未チェックの提出物を一括で開く'
+    click_button '未完了の提出物を一括で開く'
 
     within_window(windows.last) do
       assert_text 'テストの提出物1です。'
