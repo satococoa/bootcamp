@@ -71,7 +71,8 @@ Rails.application.routes.draw do
     namespace :categories_practices do
       resources :position, only: %i(update)
     end
-  resources :announcements, except: %i(new edit)
+    resources :announcements, except: %i(new edit)
+    resources :searchables, only: %i(index)
   end
 
   namespace :admin do
