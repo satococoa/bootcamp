@@ -1,0 +1,13 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER:-bootcamp}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - ${DB_PORT:-5432}:5432
+volumes:
+  dbdata:
